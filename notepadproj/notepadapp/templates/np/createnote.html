@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--This is a comment-->
+<center>
+    <h2>Create Note:</h2>
+    </center>
+<br>
+<center>
+        <form method='POST' class="post-form" onsubmit="">
+         <table class='table'>
+        {% csrf_token %}
+        {{form.as_table}}
+            
+    </table>
+    <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+</center>
+
+<br>
+<hr>
+{%  endblock %}

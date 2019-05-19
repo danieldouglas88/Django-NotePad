@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--This is a comment-->
+
+<center>
+    <h1>Statatistics </h1>
+    <hr>
+    You've made a total of <b>{{stat}} note(s),</b>  and your team has made a  <b> total of {{teamnotes}} notes.</b>  This means <h3>{{divide}}% of all notes </h3> are by you. 
+    <br>
+    <hr>
+    Your last login was <h3>on {{userinfo.last_login}}</h3> Your <b>user ID is {{userinfo.id}}, </b> and you <h3>joined on {{userinfo.date_joined}}</h3>
+    <hr>
+    Your longest comment was on <h3>{% for i in longestcomment %}{{ i.initialdate }}</h3> and it has an <h3>ID of {{i.id}}.</h3>
+{% endfor %}
+    <hr>
+</center>
+
+{%  endblock %}

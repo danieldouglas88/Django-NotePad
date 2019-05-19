@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>NotePad App</title>
+  <title>Team Collab App</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -52,15 +52,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#" style="color:white;">{{request.user.username}} </a>
+      <a class="navbar-brand" href="{% url 'index' %}" style="color:white;">{{request.user.username}} </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
         
       <ul class="nav navbar-nav">
-<a class="navbar-brand" href="{% url 'index' %}"> Home</a> 
 <a class="navbar-brand" href="{% url 'seenotes' %}"> Team Notes</a> 
 <a class="navbar-brand" href="{% url 'seemynotes' %}"> My Notes</a> 
 <a class="navbar-brand" href="{% url 'createnote' %}"> Create Note</a> 
+<a class="navbar-brand" href="{% url 'search' %}"> Search</a> 
+<a class="navbar-brand" href="{% url 'stats' %}"> Stats & Info</a> 
       </ul>
         
       <ul class="nav navbar-nav navbar-right">

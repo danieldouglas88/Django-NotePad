@@ -10,11 +10,14 @@
     <th scope="col"><h3>Comment</h3></th>
     <th scope="col"><h3>Posted On</h3></th>
     <th scope="col"><h3>Updated</h3></th>          
+    <th scope="col"></th>          
+    <th scope="col"></th>          
   </tr>
       
   {% for i in notes %}
    <tr>
-       <td>{{ i.comment }}</td>
+       <td><a href="notedetails?k={{i.id}}">{{ i.comment }}</a>
+</td>
        <td>{{ i.initialdate }}</td>
        <td>{{ i.update_date }}</td>
    </tr>

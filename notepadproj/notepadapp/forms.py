@@ -1,5 +1,6 @@
 from django import forms
 from .models import NotePad
+import datetime
 
 class NoteForm(forms.ModelForm):
     class Meta:

@@ -3,13 +3,13 @@
 <!--This is a comment-->
 
 <center>
-    <h2>Create Note:</h2>
+    <h2>Update note number {% for i in noteid %}{{ i.id }}{% endfor %}:</h2>
     </center>
 <br>
 <center>
-<form action="/createsuccess?j=" method="get" target="_self" class="form-inline">
+<form action="/updatesuccess?j=" method="get" target="_self" class="form-inline">
   <div class="form-group mx-sm-3 mb-2">
-      <textarea type="text" rows="12" cols="40" name="commentbox"></textarea><br>
+      <textarea type="text" rows="12" cols="40" name="commentbox">{% for i in noteid %}{{ i.comment }}{% endfor %}</textarea><br>
     </div>
   <input class="btn btn-primary mb-2" type="submit" value="Submit">
 </form>

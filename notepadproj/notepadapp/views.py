@@ -35,6 +35,7 @@ def loginmessage(request):
     user = request.user.username
     return render(request, 'np/loginmessage.html', {"user":user})
 
+@login_required
 def logoutmessage(request):
     user = request.user.username
     logout(request)
@@ -79,11 +80,18 @@ def notedelete(request):
 @login_required        
 def stats(request):
     stat = NotePad.objects.filter(username = request.user.username).count()
-    userinfo = User.objects.get(username=request.user.username)
+    updatenum = NotePad.objects.filter(username = request.user.username, update_date = None).count()
     teamnotes = NotePad.objects.filter().count()
+    updatednotes = stat - updatenum
+    updatepercent = (updatednotes/teamnotes) * 100
+    userinfo = User.objects.get(username=request.user.username)
     divide = (stat/teamnotes) * 100
     longestcomment = NotePad.objects.raw("select id, length(comment), initialdate, comment from notepad where username = '{0}' order by length desc limit 1".format(request.user.username))
-    return render(request, 'np/stats.html', {'stat': stat, 'teamnotes': teamnotes, 'divide': divide, 'userinfo':userinfo, 'longestcomment': longestcomment})
+    if(str(stat) == '0'):
+        return HttpResponse("Sorry, there are no stats for you yet.")       
+    else:
+        return render(request, 'np/stats.html', {'stat': stat, 'teamnotes': teamnotes, 'divide': divide, 'userinfo':userinfo, 'longestcomment': longestcomment, 'updatednotes': updatednotes, 'updatepercent': updatepercent})
+
 
 def noteupdate(request):
     noteid = NotePad.objects.raw("SELECT * FROM NotePad WHERE ID = '{0}'".format(request.GET.get('k')))
@@ -91,11 +99,8 @@ def noteupdate(request):
 
 def updatesuccess(request):
     qs = parse.parse_qs(parse.urlparse(request.META.get('HTTP_REFERER')).query)['k'][0]
-    update = NotePad.objects.get(id=qs)
-    update.comment = request.GET.get('commentbox')
-    update.update_date = datetime.datetime.now()
-    update.save()
-    return render(request, 'np/updatesuccess.html', {"update": update})
+    update = NotePad.objects.filter(id=qs).update(comment = request.GET.get('commentbox'), update_date = datetime.datetime.now())
+    return render(request, 'np/updatesuccess.html')
 
 def createsuccess(request):
     create = NotePad.objects.create()

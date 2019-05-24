@@ -21,4 +21,5 @@ urlpatterns = [
     path('noteupdate', views.noteupdate, name='noteupdate'),
     path('updatesuccess', views.updatesuccess, name='updatesuccess'),
     path('createsuccess', views.createsuccess, name='createsuccess'),
+    path('error', views.error, name='error'),
 ]

@@ -1,7 +1,6 @@
 from django.test import TestCase
 from .models import NotePad
 from django.urls import reverse
-from datetime import datetime
 
 #NotePad tests
 class NotePadTests(TestCase):
